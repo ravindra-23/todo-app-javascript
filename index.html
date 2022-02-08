@@ -36,6 +36,7 @@
 
             <div class="form-section">
                 <form class="form">
+                    <button class="submit-todo"></button>
                     <input type="text" class="todo-input" placeholder="Add Todo...">
                 </form>
             </div>
@@ -43,6 +44,17 @@
             <div class="todo-container">
 
                 <!-- All todos Goes here -->
+                <div class="todo">
+                    <input type="checkbox" name="checkbox" id="check-todo" class="check-todo">
+                    <label>Buy eggs</label>
+                    <button class="delete-btn"><img src="./images/icon-cross.svg" alt="delete icon"></button>
+                </div>
+
+                <div class="todo">
+                    <input type="checkbox" name="checkbox" id="check-todo" class="check-todo">
+                    <label>Buy eggs</label>
+                    <button class="delete-btn"><img src="./images/icon-cross.svg" alt="delete icon"></button>
+                </div>
                 
             </div>
 
@@ -78,5 +90,6 @@
         </div>
     </template>
 
-    <script src="script.js"></script>-</body> /
+    <script src="script.js"></script>
+</body>
 </html>
