@@ -166,6 +166,8 @@ header {
     width: 100%;
     font-size: .8rem;
     color: var(--clr-input);
+    outline: none;
+    background: none;
 }
 
 /* Todo Container */
@@ -311,6 +313,10 @@ header {
         top: 76%;
         box-shadow: none;
     }
+}
+
+.hidden {
+    display: none;
 }
 
 

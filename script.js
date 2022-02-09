@@ -29,6 +29,7 @@ const todoContainer = document.querySelector('.todo-container')
 const todoTemplate = document.getElementById('todo-template')
 const clearCompletedBtn = document.querySelector('.clear-completed')
 const todosLeft = document.querySelector('.todos-left')
+const actionButtons = document.querySelector('.action-btns')
 
 
 
@@ -46,8 +47,7 @@ function todoSubmit(e) {
 
 // Function to create todo object
 function createTodo(text) {
-    let id = todos.length + 1;
-    return {id: id.toString(), name: text, complete: false}
+    return {id: Date.now().toString(), name: text, complete: false}
 }
 
 // Function to render Todo
@@ -80,6 +80,7 @@ function render() {
     renderTodoCount()
 }
 
+// function to check and delete todo
 function checkAndDeleteTodo(e) {
     if(e.target.tagName.toLowerCase() === 'input') {
         console.log('checkbox clicked')
@@ -114,6 +115,41 @@ function renderTodoCount() {
     todosLeft.innerText = `${incompleteTodoCount} ${todoString} left`
 }
 
+function filter(e) {
+    if(e.target.tagName.toLowerCase() === 'button') {
+        const id = e.target.id
+        filterTodos(id)
+    }
+}
+
+// Functio to filter todos
+function filterTodos(id) {
+
+    const allTodos = document.querySelectorAll('.todo')
+    console.log(allTodos)
+    
+    switch(id) {
+        case 'All':
+            allTodos.forEach(todo => {
+                todo.classList.remove('hidden')
+            })
+            break;
+
+        case 'Active': 
+            allTodos.forEach(todo => {
+                todo.querySelector('input').checked ? todo.classList.add('hidden') : todo.classList.remove('hidden')
+            })   
+            break;
+            
+        case 'Completed': 
+            allTodos.forEach(todo => {
+                todo.querySelector('input').checked ? todo.classList.remove('hidden') : todo.classList.add('hidden')
+            }) 
+            break;   
+    }
+
+}
+
 
 
 // Event-Listeners
@@ -121,5 +157,6 @@ function renderTodoCount() {
 form.addEventListener('submit', todoSubmit)
 todoContainer.addEventListener('click', checkAndDeleteTodo)
 clearCompletedBtn.addEventListener('click', clearCompleted)
+actionButtons.addEventListener('click', filter)
 
 render()
