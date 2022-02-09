@@ -3,11 +3,13 @@
 :root {
     --clr-body: hsl(0, 0%, 98%);
     --border-clr: hsl(234, 39%, 85%);
+    --clr-filter: hsl(233, 14%, 35%);
     --clr-input: hsl(236, 9%, 61%);
     --clr-border-bottom: hsl(233, 11%, 84%);
     --check-bg: linear-gradient(hsl(280, 87%, 65%), hsl(192, 100%, 67%));
     --check-border: hsl(236, 9%, 61%);
     --btn-active: hsl(220, 98%, 61%);
+    --bg-image-light-m: url('./images/bg-desktop-light.jpg')
 }
 
 /* -------------*/
@@ -101,7 +103,7 @@ button {
 /* Header */
 
 header {
-    background-image: url('./images/bg-mobile-light.jpg');
+    background-image: var(--bg-image-light-m);
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 30vh;
@@ -268,7 +270,48 @@ header {
     color: var(--btn-active);
 }
 
+@media (min-width: 768px) {
 
+    .header-wrapper {
+        width: 50%;
+        margin: 0 auto;
+        padding: 3rem 0
+    }
+
+    .container {
+        width: 50%;
+        margin: 0 auto;
+        padding-inline: 0;
+    }
+}
+
+@media (min-width: 1440px) {
+
+    .header-wrapper {
+        width: 40%;
+    }
+
+    .container {
+        width: 40%;
+    }
+
+    .todo-input,
+    .todo label {
+        font-size: 1.2rem;
+    }
+
+    .filter-btns > button {
+        font-weight: 700;
+        color: var(--clr-filter);
+    }
+
+    .filter-btns {
+        position: absolute;
+        left: 30%;
+        top: 76%;
+        box-shadow: none;
+    }
+}
 
 
 
