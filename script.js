@@ -1,6 +1,24 @@
 // Declarations
 
-let todos = []
+let todos = [
+    {
+        id: 1,
+        name: 'Complete online Javascript Course',
+        complete: false
+    },
+
+    {
+        id: 2,
+        name: 'Jog around the park 3x',
+        complete: false
+    },
+
+    {
+        id: 3,
+        name: '10 minutes meditation',
+        complete: false
+    },
+]
 
 
 // Selectors
@@ -58,3 +76,5 @@ form.addEventListener('submit', (e) => {
     todoInput.value = ''
     render()
 })
+
+renderTodo()

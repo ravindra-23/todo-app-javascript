@@ -5,6 +5,9 @@
     --border-clr: hsl(234, 39%, 85%);
     --clr-input: hsl(236, 9%, 61%);
     --clr-border-bottom: hsl(233, 11%, 84%);
+    --check-bg: linear-gradient(hsl(280, 87%, 65%), hsl(192, 100%, 67%));
+    --check-border: hsl(236, 9%, 61%);
+    --btn-active: hsl(220, 98%, 61%);
 }
 
 /* -------------*/
@@ -60,6 +63,10 @@ select {
     font: inherit;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* remove animations for those who turned them off */
 
 @media (prefers-reduced-motion: reduce) {
@@ -95,7 +102,10 @@ select {
 
 header {
     background-image: url('./images/bg-mobile-light.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 30vh;
+    position: relative;
 }
 
 .header-wrapper {
@@ -121,6 +131,10 @@ header {
 
 .container {
     padding: 0 1.5rem;
+    position: absolute;
+    top: 17%;
+    left: 0;
+    right: 0;
 }
 
 /* Input section */
@@ -130,17 +144,17 @@ header {
     background: var(--clr-body);
     display: flex;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1rem 1.2rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 5px;
 }
 
 .submit-todo {
-    width: 20px;
+    width: 1.8rem;
     aspect-ratio: 1;
     border-radius: 50%;
     border: none;
-    margin-right: .5rem;
+    margin-right: 1.2rem;
     border: .5px solid var(--border-clr);
     background: none;
 }
@@ -148,7 +162,7 @@ header {
 .todo-input {
     border: none;
     width: 100%;
-    font-size: 1rem;
+    font-size: .8rem;
     color: var(--clr-input);
 }
 
@@ -160,34 +174,102 @@ header {
     border-radius: 5px;
 }
 
+/* Todo */
+
 .todo {
-    background: var(--clr-body);
-    padding: 1rem;
+    position: relative;
     display: flex;
     align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    background: var(--clr-body);
+    padding: 1rem;
+    border-radius: 5px;
     border-bottom: .5px solid var(--clr-border-bottom);
+}
+
+.todo label {
+    font-size: .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.delete-btn {
+    width: 2rem;
+    background: none;
+    border: none;
+}
+
+/* Cusstom Checkbox */
+
+[type='checkbox'] {
+    opacity: 0;
+    position: absolute;
 }
 
 .custom-checkbox {
     display: inline-block;
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2rem;
+    height: 2rem;
     cursor: pointer;
-    border: 1px solid hsl(236, 9%, 61%);
+    border: 1px solid var(--check-border);
     border-radius: 50%;
     margin-right: 1.2rem;
-    transform: scale(.5);
+    transform: scale(.8);
     transition: transform 300ms ease-in-out;
 }
 
-input[type="checkbox"]:checked + label {
+[type="checkbox"]:checked + label {
     text-decoration: line-through;
+    opacity: .5;
 }
 
 [type='checkbox']:checked + label .custom-checkbox {
-    background-image: url('./images/icon-check.svg');
-    background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    background-image: url('./images/icon-check.svg'), var(--check-bg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: hsl(0, 0%, 98%);
 }
+
+/* Filters */
+
+.todo-remaining {
+    font-size: .8rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+}
+
+.todos-left, .clear-completed {
+    color: var(--clr-input);
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+}
+
+.filter-btns {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+}
+
+.filter-btn:hover,
+.filter-btn:focus {
+    color: var(--btn-active);
+}
+
+
+
 
 
 
