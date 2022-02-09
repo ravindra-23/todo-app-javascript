@@ -2,19 +2,19 @@
 
 let todos = [
     {
-        id: 1,
+        id: '1',
         name: 'Complete online Javascript Course',
         complete: false
     },
 
     {
-        id: 2,
+        id: '2',
         name: 'Jog around the park 3x',
         complete: false
     },
 
     {
-        id: 3,
+        id: '3',
         name: '10 minutes meditation',
         complete: false
     },
@@ -28,11 +28,23 @@ const todoInput = document.querySelector('.todo-input')
 const todoContainer = document.querySelector('.todo-container')
 const todoTemplate = document.getElementById('todo-template')
 
+
 // Functions
+
+// Function for submitting todo
+function todoSubmit(e) {
+    e.preventDefault()
+    const todoName = todoInput.value
+    const todo = createTodo(todoName)
+    todos.push(todo)
+    todoInput.value = ''
+    render()
+}
 
 // Function to create todo object
 function createTodo(text) {
-    return {id: Date.now().toString(), name: text, complete: false}
+    let id = todos.length + 1;
+    return {id: id.toString(), name: text, complete: false}
 }
 
 // Function to render Todo
@@ -64,17 +76,30 @@ function render() {
     renderTodo(todos)
 }
 
+function checkAndDeleteTodo(e) {
+    if(e.target.tagName.toLowerCase() === 'input') {
+        console.log('checkbox clicked')
+        const selectedTodo = todos.find(todo => todo.id === e.target.id)
+        console.log(selectedTodo)
+        selectedTodo.complete = e.target.checked
+        console.log(todos)
+    }
+
+    if(e.target.parentElement.tagName.toLowerCase() === 'button') {
+        deleteTodo(e.target.parentElement.id)
+    }
+}
+
+// Function to delete a todo
+function deleteTodo(id) {
+    todos = todos.filter(todo => todo.id !== id)
+    render()
+}
+
+
 // Event-Listeners
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
-    const todoName = todoInput.value
-    console.log(todoName)
-    const todo = createTodo(todoName)
-    todos.push(todo)
-    console.log(todos)
-    todoInput.value = ''
-    render()
-})
+form.addEventListener('submit', todoSubmit)
+todoContainer.addEventListener('click', checkAndDeleteTodo)
 
 renderTodo()
