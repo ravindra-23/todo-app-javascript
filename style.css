@@ -185,7 +185,7 @@ input[type="checkbox"]:checked + label {
 }
 
 [type='checkbox']:checked + label .custom-checkbox {
-    background-image: url('./images/check-solid.svg');
+    background-image: url('./images/icon-check.svg');
     background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
