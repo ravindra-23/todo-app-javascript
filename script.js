@@ -27,6 +27,9 @@ const form = document.querySelector('.form')
 const todoInput = document.querySelector('.todo-input')
 const todoContainer = document.querySelector('.todo-container')
 const todoTemplate = document.getElementById('todo-template')
+const clearCompletedBtn = document.querySelector('.clear-completed')
+const todosLeft = document.querySelector('.todos-left')
+
 
 
 // Functions
@@ -74,6 +77,7 @@ function clearElement(element) {
 function render() {
     clearElement(todoContainer)
     renderTodo(todos)
+    renderTodoCount()
 }
 
 function checkAndDeleteTodo(e) {
@@ -83,6 +87,7 @@ function checkAndDeleteTodo(e) {
         console.log(selectedTodo)
         selectedTodo.complete = e.target.checked
         console.log(todos)
+        renderTodoCount()
     }
 
     if(e.target.parentElement.tagName.toLowerCase() === 'button') {
@@ -96,10 +101,25 @@ function deleteTodo(id) {
     render()
 }
 
+// Function to clear completed todos
+function clearCompleted() {
+    todos = todos.filter(todo => !todo.complete)
+    render()
+}
+
+// Function to render todos left count
+function renderTodoCount() {
+    const incompleteTodoCount = todos.filter(todo => !todo.complete).length
+    const todoString = incompleteTodoCount === 1 ? 'todo' : 'todos'
+    todosLeft.innerText = `${incompleteTodoCount} ${todoString} left`
+}
+
+
 
 // Event-Listeners
 
 form.addEventListener('submit', todoSubmit)
 todoContainer.addEventListener('click', checkAndDeleteTodo)
+clearCompletedBtn.addEventListener('click', clearCompleted)
 
-renderTodo()
+render()
