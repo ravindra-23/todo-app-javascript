@@ -30,6 +30,7 @@ const todoTemplate = document.getElementById('todo-template')
 const clearCompletedBtn = document.querySelector('.clear-completed')
 const todosLeft = document.querySelector('.todos-left')
 const actionButtons = document.querySelector('.action-btns')
+const themeBtn = document.querySelector('.theme-btn')
 
 
 
@@ -150,6 +151,11 @@ function filterTodos(id) {
 
 }
 
+// Function to toggle Dark mode
+function toggleTheme() {
+    document.body.classList.toggle('dark')
+}
+
 
 
 // Event-Listeners
@@ -158,5 +164,6 @@ form.addEventListener('submit', todoSubmit)
 todoContainer.addEventListener('click', checkAndDeleteTodo)
 clearCompletedBtn.addEventListener('click', clearCompleted)
 actionButtons.addEventListener('click', filter)
+themeBtn.addEventListener('click', toggleTheme)
 
 render()

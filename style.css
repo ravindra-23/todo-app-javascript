@@ -2,14 +2,24 @@
 
 :root {
     --clr-body: hsl(0, 0%, 98%);
+    --clr-text: hsl(235, 21%, 11%);
     --border-clr: hsl(234, 39%, 85%);
     --clr-filter: hsl(233, 14%, 35%);
     --clr-input: hsl(236, 9%, 61%);
-    --clr-border-bottom: hsl(233, 11%, 84%);
     --check-bg: linear-gradient(hsl(280, 87%, 65%), hsl(192, 100%, 67%));
     --check-border: hsl(236, 9%, 61%);
     --btn-active: hsl(220, 98%, 61%);
-    --bg-image-light-m: url('./images/bg-desktop-light.jpg')
+    --bg-image-light-m: url('./images/bg-desktop-light.jpg');
+    --bg-image-theme-btn: url('./images/icon-moon.svg');
+}
+
+body.dark {
+    --clr-body: hsl(235, 24%, 19%);
+    --border-clr: hsl(233, 14%, 35%);
+    --bg-image-light-m: url('./images/bg-desktop-dark.jpg');
+    --clr-text: hsl(0, 0%, 98%);
+    --clr-filter: hsl(234, 11%, 52%);
+    --bg-image-theme-btn: url('./images/icon-sun.svg');
 }
 
 /* -------------*/
@@ -17,6 +27,8 @@
 /* ------------- */
 
 /* Box-sizing */
+
+
 
 *,
 *::before,
@@ -100,6 +112,11 @@ button {
     gap: var(--gap, 1rem);
 }
 
+body {
+    background: var(--clr-body);
+    color: var(--clr-text);
+}
+
 /* Header */
 
 header {
@@ -120,13 +137,17 @@ header {
 .title {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--clr-body);
+    color: hsl(0, 0%, 98%);
     letter-spacing: 5px;
 }
 
 .theme-btn {
+    width: 30px;
+    height: 30px;
     border: none;
     background: none;
+    background-image: var(--bg-image-theme-btn);
+    background-size: cover;
 }
 
 /* Main Section */
@@ -137,6 +158,7 @@ header {
     top: 17%;
     left: 0;
     right: 0;
+    z-index: 1000;
 }
 
 /* Input section */
@@ -189,10 +211,11 @@ header {
     background: var(--clr-body);
     padding: 1rem;
     border-radius: 5px;
-    border-bottom: .5px solid var(--clr-border-bottom);
+    border-bottom: .5px solid var(--border-clr);
 }
 
 .todo label {
+    color: var(--clr-text);
     font-size: .8rem;
     display: flex;
     align-items: center;
@@ -240,15 +263,6 @@ header {
 
 /* Filters */
 
-.todo-remaining {
-    font-size: .8rem;
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 5px;
-}
-
 .todos-left, .clear-completed {
     color: var(--clr-input);
 }
@@ -258,18 +272,22 @@ header {
     border: none;
 }
 
-.filter-btns {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 5px;
+.filter-btns > button {
+    color: var(--clr-filter);;
 }
 
 .filter-btn:hover,
 .filter-btn:focus {
     color: var(--btn-active);
+}
+
+.action-btns {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1rem;
+    border-radius: 5px;
+    background: var(--clr-body);
 }
 
 @media (min-width: 768px) {
@@ -280,10 +298,19 @@ header {
         padding: 3rem 0
     }
 
+    .title {
+        font-size: 2.2rem;
+    }
+
     .container {
         width: 50%;
         margin: 0 auto;
         padding-inline: 0;
+    }
+
+    .todo-input,
+    .todo label {
+        font-size: 1rem;
     }
 }
 
@@ -291,6 +318,10 @@ header {
 
     .header-wrapper {
         width: 40%;
+    }
+
+    .title {
+        font-size: 2.5rem;
     }
 
     .container {
@@ -304,14 +335,6 @@ header {
 
     .filter-btns > button {
         font-weight: 700;
-        color: var(--clr-filter);
-    }
-
-    .filter-btns {
-        position: absolute;
-        left: 30%;
-        top: 76%;
-        box-shadow: none;
     }
 }
 
