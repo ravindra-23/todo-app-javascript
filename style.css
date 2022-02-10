@@ -150,6 +150,14 @@ header {
     background-size: cover;
 }
 
+.error {
+    width: 100%;
+    margin-block: 1rem;
+    font-size: 2rem;
+    color: var(--clr-text);
+    display: none;
+}
+
 /* Main Section */
 
 .container {

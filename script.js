@@ -1,6 +1,7 @@
 // Declarations
+const LOCAL_STORAGE_TODOS = 'tasks.todo'
 
-let todos = [
+let todos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS)) || [
     {
         id: '1',
         name: 'Complete online Javascript Course',
@@ -21,6 +22,7 @@ let todos = [
 ]
 
 
+
 // Selectors
 
 const form = document.querySelector('.form')
@@ -31,6 +33,7 @@ const clearCompletedBtn = document.querySelector('.clear-completed')
 const todosLeft = document.querySelector('.todos-left')
 const actionButtons = document.querySelector('.action-btns')
 const themeBtn = document.querySelector('.theme-btn')
+const errorMessage = document.querySelector('.error')
 
 
 
@@ -40,10 +43,17 @@ const themeBtn = document.querySelector('.theme-btn')
 function todoSubmit(e) {
     e.preventDefault()
     const todoName = todoInput.value
-    const todo = createTodo(todoName)
-    todos.push(todo)
-    todoInput.value = ''
-    render()
+    if(todoName === null || todoName === '') {
+        errorMessage.style.display = 'block'
+        setTimeout(() => {
+            errorMessage.style.display = 'none'
+        }, 2000)
+    } else {
+        const todo = createTodo(todoName)
+        todos.push(todo)
+        todoInput.value = ''
+        render()
+    }
 }
 
 // Function to create todo object
@@ -65,6 +75,7 @@ function renderTodo() {
         deleteBtn.id = todo.id
         todoContainer.appendChild(todoElement)
     })
+    saveToLocalStorage()
 }
 
 // Function to clear the existing element from container
@@ -79,6 +90,7 @@ function render() {
     clearElement(todoContainer)
     renderTodo(todos)
     renderTodoCount()
+    saveToLocalStorage()
 }
 
 // function to check and delete todo
@@ -90,6 +102,7 @@ function checkAndDeleteTodo(e) {
         selectedTodo.complete = e.target.checked
         console.log(todos)
         renderTodoCount()
+        saveToLocalStorage()
     }
 
     if(e.target.parentElement.tagName.toLowerCase() === 'button') {
@@ -101,6 +114,7 @@ function checkAndDeleteTodo(e) {
 function deleteTodo(id) {
     todos = todos.filter(todo => todo.id !== id)
     render()
+    saveToLocalStorage()
 }
 
 // Function to clear completed todos
@@ -154,6 +168,10 @@ function filterTodos(id) {
 // Function to toggle Dark mode
 function toggleTheme() {
     document.body.classList.toggle('dark')
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify(todos))
 }
 
 
