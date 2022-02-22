@@ -272,10 +272,16 @@ header {
 /* Filters */
 
 .todos-left, .clear-completed {
+    font-size: .8rem;
     color: var(--clr-input);
 }
 
+.filter-btns {
+    display: flex;
+}
+
 .filter-btn {
+    font-size: .8rem;
     background: none;
     border: none;
 }
@@ -318,6 +324,10 @@ header {
 
     .todo-input,
     .todo label {
+        font-size: 1rem;
+    }
+
+    .filter-btn, .todos-left {
         font-size: 1rem;
     }
 }
