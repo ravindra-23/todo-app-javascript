@@ -2,6 +2,10 @@
 
 ![Design preview for the Todo app coding challenge](./design/desktop-preview.jpg)
 
+## See it live
+
+Open [https://condescending-jang-9f8c14.netlify.app](https://condescending-jang-9f8c14.netlify.app)
+
 ## Welcome! 👋
 
 Thanks for checking out this front-end coding challenge.
