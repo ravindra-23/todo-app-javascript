@@ -4,7 +4,7 @@
 
 ## See it live
 
-Open [https://condescending-jang-9f8c14.netlify.app](https://condescending-jang-9f8c14.netlify.app)
+Open [https://todo-app-javascript2308.netlify.app](https://todo-app-javascript2308.netlify.app)
 
 ## Welcome! 👋
 
